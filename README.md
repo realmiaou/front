@@ -1,4 +1,4 @@
-# Typing utility@
+# Font utilities for NuxtJs, EasyFirestore, Firebase
 
 ## How to use
 
