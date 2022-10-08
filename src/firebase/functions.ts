@@ -2,9 +2,6 @@ import { Functions, httpsCallable } from 'firebase/functions'
 import { Parameter } from '@miaou/types'
 import moment from 'moment'
 
-/*********
- * Firebase function
- */
 export const functions =
     <T extends (data: any | void) => Promise<any>>(
     firebaseFunctions: Functions,

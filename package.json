@@ -36,6 +36,7 @@
   "dependencies": {
     "firebase": "^9.11.0",
     "moment": "^2.29.4",
+    "pure-cache": "^1.0.6",
     "vuex-class-component": "^2.3.6",
     "vuex-easy-firestore": "^1.37.1"
   }
