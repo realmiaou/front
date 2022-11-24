@@ -1,15 +1,7 @@
 import { IEasyFirestoreModule } from 'vuex-easy-firestore/types/declarations'
 import { VuexModule } from 'vuex-class-component/dist/interfaces'
 import { createModule, extractVuexModule } from 'vuex-class-component'
-import {
-  collection,
-  doc,
-  Firestore,
-  getDoc,
-  getDocs,
-  query,
-  QueryConstraint
-} from 'firebase/firestore'
+import { deserializeFirestoreDate } from './serializer'
 
 export const NuxtEasyVuexModule = <D extends { id: any }>(
   namespaced: string,
@@ -55,64 +47,7 @@ export const NuxtEasyVuexModule = <D extends { id: any }>(
 export const NuxtVuexModule = (namespaced: string) =>
   createModule({ target: 'nuxt', namespaced })
 
-export const fetchAll = async <D extends { id: any }>(
-  firestore: Firestore,
-  collectionPath: string
-) => {
-  const data = await getDocs(
-    collection(firestore, collectionPath)
-  )
-  return data.docs.map(doc => ({ id: doc.id, ...doc.data() })) as D[]
-}
-
-export const NuxtFirebaseVuexModule = <D extends { id: any }>(
-  namespaced: string,
-  collectionPath: string
-) =>
-    class extends createModule({ target: 'nuxt', namespaced }) {
-      async fetchAll (...queryConstraints: QueryConstraint[]) {
-        const data = await getDocs(
-          query(
-            collection(this.$store.app.$fire.firestore, collectionPath),
-            ...queryConstraints
-          )
-        )
-        return data.docs.map<D>(
-          doc => deserializeFirestoreDate(doc.data()) as D
-        )
-      }
-
-      async fetchById (id: D['id']) {
-        const data = await getDoc(
-          doc(this.$store.app.$fire.firestore, collectionPath, id)
-        )
-        return deserializeFirestoreDate(data.data()) as D
-      }
-
-      async fetchIds () {
-        const data = await getDocs(
-          query(collection(this.$store.app.$fire.firestore, collectionPath))
-        )
-        return data.docs.map(doc => doc.data().id)
-      }
-    }
-
 export const extractModule = (module: any) => ({
   ...Object.values(extractVuexModule(module))[0],
   ...(module.configuration && module.configuration)
 })
-
-const deserializeFirestoreDate = <T>(obj: any): any => {
-  if (!obj) { return obj }
-  if (Array.isArray(obj)) { return obj.map(deserializeFirestoreDate) }
-  if (!(obj instanceof Object)) { return obj }
-  return Object.keys(obj).reduce((acc: { [key: string]: any }, key) => {
-    const value = obj[key]
-    acc[key] = value?.toDate
-      ? value.toDate()
-      : value
-        ? deserializeFirestoreDate(value)
-        : value
-    return acc
-  }, {}) as T
-}
