@@ -4,11 +4,12 @@ import { createModule, extractVuexModule } from 'vuex-class-component'
 import {
   collection,
   doc,
+  Firestore,
   getDoc,
   getDocs,
   query,
   QueryConstraint
-} from '@firebase/firestore'
+} from 'firebase/firestore'
 
 export const NuxtEasyVuexModule = <D extends { id: any }>(
   namespaced: string,
@@ -53,6 +54,16 @@ export const NuxtEasyVuexModule = <D extends { id: any }>(
     }
 export const NuxtVuexModule = (namespaced: string) =>
   createModule({ target: 'nuxt', namespaced })
+
+export const fetchAll = async <D extends { id: any }>(
+  firestore: Firestore,
+  collectionPath: string
+) => {
+  const data = await getDocs(
+    collection(firestore, collectionPath)
+  )
+  return data.docs.map(doc => ({ id: doc.id, ...doc.data() })) as D[]
+}
 
 export const NuxtFirebaseVuexModule = <D extends { id: any }>(
   namespaced: string,
