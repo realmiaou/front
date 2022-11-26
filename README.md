@@ -116,6 +116,51 @@ export class Users extends NuxtEasyVuexModule<User>(
 export default extractModule(Users)
 ```
 
+### Firestore Helper
+
+Helper function that bring simple tooling to connect to firestore collection with date converter and strong typing.
+- `fetchAll = (...queryConstraints: QueryConstraint[]) => Promise<D[]`
+- `fetchById = (id: D['id']) => Promise<D>`
+- `fetchIds = () => Promise<D['id'][]> `
+- `D is definition of collection entity`
+
+```typescript
+import { action } from 'vuex-class-component'
+import {
+  extractModule,
+  fetchAll,
+  fetchById,
+  fetchIds,
+  NuxtVuexModule,
+} from '@miaou/front'
+import { UserId } from '@miaou/types'
+import { User } from '~/functions/src/user/index.type'
+
+export class Test extends NuxtVuexModule('test') {
+  @action
+  async fetchAll() {
+    return await fetchAll<User>(this.$store.$firestore, 'users')
+  }
+
+  @action
+  async fetchById() {
+    return await fetchById<User>(
+      this.$store.$firestore,
+      'users',
+      '9iGToNNGosLuImncBlSx7eguDyVw' as UserId
+    )
+  }
+
+  @action
+  async fetchIds() {
+    return await fetchIds<User>(this.$store.$firestore, 'users')
+  }
+}
+
+export default extractModule(Test)
+
+```
+
 ### Cache Decorator
 
 ```typescript
