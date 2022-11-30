@@ -33,7 +33,7 @@ export const fetchById = async <D extends { id: any }>(firestore: Firestore, pat
       genericDataConverter<D>()
     )
   )
-  return data.data()
+  return data.data()!
 }
 
 export const fetchIds = async <D extends { id: any }>(firestore: Firestore, pathCollection: string) => {
