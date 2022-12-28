@@ -18,10 +18,10 @@ export const NuxtEasyVuexModule = <D extends { id: string | number }>(
   ...defaultQuery: QueryConstraint[]
 ) => {
   return class extends NuxtVuexModule(namespaced) {
-    private innerData: D[] = []
-    private unsub = null as Unsubscribe | null
+    innerData: D[] = []
+    unsub = null as Unsubscribe | null
 
-    protected get data () {
+    get data () {
       return _.chain(this.innerData)
         .uniqBy(({ id }) => id)
         .value()
