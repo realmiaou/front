@@ -1,6 +1,6 @@
 {
   "name": "@miaou/front",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "author": "Thibaut Mottet",
   "description": "Front utilities for NuxtJs, Firebase",
   "license": "MIT",
