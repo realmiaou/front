@@ -1,6 +1,7 @@
 import { createModule, extractVuexModule } from 'vuex-class-component'
 import {
   collection,
+  doc,
   onSnapshot,
   query,
   QueryConstraint,
@@ -12,7 +13,7 @@ import { deserializeFirestoreDate } from './serializer'
 export const NuxtVuexModule = (namespaced: string) =>
   createModule({ target: 'nuxt', namespaced })
 
-export const NuxtEasyVuexModule = <D extends { id: string | number }>(
+export const NuxtReactiveCollectionVuexModule = <D extends { id: string | number }>(
   namespaced: string,
   collectionPath: string,
   ...defaultQuery: QueryConstraint[]
@@ -70,6 +71,31 @@ export const NuxtEasyVuexModule = <D extends { id: string | number }>(
 
     fetchById (id: D['id']) {
       return this.innerData.find(entity => entity.id === id)!
+    }
+  }
+}
+
+export const NuxtReactiveDocumentVuexModule = <D extends { id: string | number }>(
+  namespaced: string,
+  collectionPath: string
+) => {
+  return class extends NuxtVuexModule(namespaced) {
+    data!: D
+    unsub = null as Unsubscribe | null
+
+    openChannel (id: D['id']) {
+      this.unsub = onSnapshot(
+        doc(this.$store.$firestore, `${collectionPath}/${id}`)
+        ,
+        (doc) => { this.data = deserializeFirestoreDate(doc.data()) })
+
+      return Promise.resolve()
+    }
+
+    closeChannel () {
+      if (this.unsub) {
+        this.unsub()
+      }
     }
   }
 }
