@@ -80,7 +80,7 @@ export const NuxtReactiveDocumentVuexModule = <D extends { id: string | number }
   collectionPath: string
 ) => {
   return class extends NuxtVuexModule(namespaced) {
-    data!: D
+    data : D | null = null
     unsub = null as Unsubscribe | null
 
     openChannel (id: D['id']) {
