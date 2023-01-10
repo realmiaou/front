@@ -8,6 +8,7 @@ This library use the library: `firebase`, `moment`, `vuex-class-component`, `vue
 yarn add --exact @miaou/front
 ```
 
+
 ## Documentation
 ### Firebase
 
