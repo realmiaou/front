@@ -23,7 +23,7 @@ export const cacheable = (options?: Partial<CacheableOptions>) => {
     descriptor.value = function (...args: any[]) {
       const key = `${originalMethod.name}-${JSON.stringify(args)}`
       const cachedData = cache.get(key)
-      if (cachedData) {
+      if (!args[0]?.resetCache && cachedData) {
         if (isDebug) { console.log('Cache hit', key, '=>', cachedData) }
         return cachedData.value
       }
