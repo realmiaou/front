@@ -8,7 +8,6 @@ import {
   Unsubscribe
 } from 'firebase/firestore'
 import uniqBy from 'lodash/uniqBy'
-import remove from 'lodash/remove'
 import { deserializeFirestoreDate } from './serializer'
 
 export const NuxtVuexModule = (namespaced: string) =>
@@ -51,7 +50,7 @@ export const NuxtReactiveCollectionVuexModule = <D extends { id: string | number
                 )
             }
             if (change.type === 'removed') {
-              this.innerData = remove(this.innerData, ({ id }) => id !== change.doc.data().id)
+              this.innerData = this.innerData.filter(({ id }) => id !== change.doc.data().id)
             }
           })
         }
