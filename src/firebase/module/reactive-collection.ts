@@ -1,17 +1,13 @@
-import { createModule, extractVuexModule } from 'vuex-class-component'
 import {
   collection,
-  doc,
   onSnapshot,
   query,
   QueryConstraint,
   Unsubscribe
 } from 'firebase/firestore'
 import uniqBy from 'lodash/uniqBy'
-import { deserializeFirestoreDate } from './serializer'
-
-export const NuxtVuexModule = (namespaced: string) =>
-  createModule({ target: 'nuxt', namespaced })
+import { deserializeFirestoreDate } from '../serializer'
+import { NuxtVuexModule } from './index'
 
 export const NuxtReactiveCollectionVuexModule = <D extends { id: string | number }>(
   namespaced: string,
@@ -69,33 +65,3 @@ export const NuxtReactiveCollectionVuexModule = <D extends { id: string | number
     }
   }
 }
-
-export const NuxtReactiveDocumentVuexModule = <D extends { id: string | number }>(
-  namespaced: string,
-  collectionPath: string
-) => {
-  return class extends NuxtVuexModule(namespaced) {
-    data : D | null = null
-    unsub = null as Unsubscribe | null
-
-    openChannel (id: D['id']) {
-      this.unsub = onSnapshot(
-        doc(this.$store.$firestore, `${collectionPath}/${id}`)
-        ,
-        (doc) => { this.data = deserializeFirestoreDate(doc.data()) })
-
-      return Promise.resolve()
-    }
-
-    closeChannel () {
-      if (this.unsub) {
-        this.unsub()
-      }
-    }
-  }
-}
-
-export const extractModule = (module: any) => ({
-  ...Object.values(extractVuexModule(module))[0],
-  ...(module.configuration && module.configuration)
-})
