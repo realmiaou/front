@@ -7,7 +7,8 @@ import {
   QueryConstraint,
   Unsubscribe
 } from 'firebase/firestore'
-import _ from 'lodash'
+import uniqBy from 'lodash/uniqBy'
+import remove from 'lodash/remove'
 import { deserializeFirestoreDate } from './serializer'
 
 export const NuxtVuexModule = (namespaced: string) =>
@@ -23,9 +24,7 @@ export const NuxtReactiveCollectionVuexModule = <D extends { id: string | number
     unsub = null as Unsubscribe | null
 
     get data () {
-      return _.chain(this.innerData)
-        .uniqBy(({ id }) => id)
-        .value()
+      return uniqBy(this.innerData, ({ id }) => id)
     }
 
     openChannel (...queryConstraints: QueryConstraint[]) {
@@ -44,18 +43,15 @@ export const NuxtReactiveCollectionVuexModule = <D extends { id: string | number
               ]
             }
             if (change.type === 'modified') {
-              this.innerData = _.chain(this.innerData)
+              this.innerData = this.innerData
                 .map(entity =>
                   entity.id === change.doc.data().id
                     ? deserializeFirestoreDate(change.doc.data())
                     : entity
                 )
-                .value()
             }
             if (change.type === 'removed') {
-              this.innerData = _.chain(this.innerData)
-                .remove(({ id }) => id !== change.doc.data().id)
-                .value()
+              this.innerData = remove(this.innerData, ({ id }) => id !== change.doc.data().id)
             }
           })
         }
