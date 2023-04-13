@@ -1,6 +1,6 @@
 {
   "name": "@miaou/front",
-  "version": "4.3.1",
+  "version": "4.3.0",
   "author": "Thibaut Mottet",
   "description": "Front utilities for NuxtJs, Firebase",
   "license": "MIT",
@@ -27,8 +27,6 @@
     "@semantic-release/gitlab": "9.5.0",
     "@semantic-release/npm": "9.0.1",
     "@types/lodash": "^4.14.191",
-    "@types/lodash.remove": "^4.7.7",
-    "@types/lodash.uniqby": "^4.7.7",
     "@typescript-eslint/parser": "5.44.0",
     "dayjs": "^1.11.6",
     "eslint": "8.28.0",
@@ -42,13 +40,12 @@
     "vuex-easy-firestore": "^1.37.1"
   },
   "dependencies": {
-    "lodash.remove": "^4.7.0",
-    "lodash.uniqby": "^4.7.0",
     "pure-cache": "1.0.6"
   },
   "peerDependencies": {
     "dayjs": "^1.11.6",
     "firebase": "^9.14.0",
+    "lodash": "^4.17.21",
     "vuex-class-component": "^2.3.6"
   }
 }

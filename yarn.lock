@@ -1786,9 +1786,9 @@ dateformat@^3.0.0:
   integrity sha512-jyCETtSl3VMZMWeRo7iY1FL19ges1t55hMo5yaam4Jrsm5EPL89UQkoQRyiI+Yf4k8r2ZpdngkV8hr1lIdjb3Q==
 
 dayjs@^1.11.6:
-  version "1.11.6"
-  resolved "https://registry.npmjs.org/dayjs/-/dayjs-1.11.6.tgz"
-  integrity sha512-zZbY5giJAinCG+7AGaw0wIhNZ6J8AhWuSXKvuc1KAyMiRsvGQWqh4L+MomvhdAYjN+lqvVCMq1I41e3YHvXkyQ==
+  version "1.11.7"
+  resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.11.7.tgz#4b296922642f70999544d1144a2c25730fce63e2"
+  integrity sha512-+Yw9U6YO5TQohxLcIkrXBeY73WP3ejHWVvx8XCk3gxvQDCTEmS48ZrSZCKciI7Bhl/uCMyxYtE9UqRILmFphkQ==
 
 debug@4, debug@^4.0.0, debug@^4.1.0, debug@^4.1.1, debug@^4.3.2, debug@^4.3.3, debug@^4.3.4:
   version "4.3.4"
@@ -5506,7 +5506,7 @@ vue-eslint-parser@^9.0.1, vue-eslint-parser@^9.0.3:
 
 vuex-class-component@^2.3.6:
   version "2.3.6"
-  resolved "https://registry.npmjs.org/vuex-class-component/-/vuex-class-component-2.3.6.tgz"
+  resolved "https://registry.yarnpkg.com/vuex-class-component/-/vuex-class-component-2.3.6.tgz#4e364c1dcaed17cd79c9457d883784666a439f1c"
   integrity sha512-3sC4ua78pDnQun22K0nLxm9j60YZdNcZPBGxEHtyWyOxTRHUA/ynkndjv49Obtq0B3QT+0CgPijC4bo/bdvRcA==
   dependencies:
     object.getownpropertydescriptors "^2.0.3"

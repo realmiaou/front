@@ -7,8 +7,8 @@ import {
   QueryConstraint,
   Unsubscribe
 } from 'firebase/firestore'
-import uniqBy from 'lodash.uniqby'
-import remove from 'lodash.remove'
+import uniqBy from 'lodash/uniqBy'
+import remove from 'lodash/remove'
 import { deserializeFirestoreDate } from './serializer'
 
 export const NuxtVuexModule = (namespaced: string) =>
