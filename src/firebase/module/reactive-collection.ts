@@ -7,7 +7,7 @@ import {
 } from 'firebase/firestore'
 import uniqBy from 'lodash/uniqBy'
 import { deserializeFirestoreDate } from '../serializer'
-import { NuxtVuexModule } from './index'
+import { NuxtVuexModule } from './util'
 
 export const NuxtReactiveCollectionVuexModule = <D extends { id: string | number }>(
   namespaced: string,
