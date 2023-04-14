@@ -9,6 +9,13 @@
   "typings": "lib/*.d.ts",
   "preserveModules": true,
   "private": false,
+  "exports": {
+    ".": {
+      "types": "./lib/*.d.ts",
+      "require": "./lib/*.js",
+      "default": "./lib/*.js"
+    }
+  },
   "scripts": {
     "build": "yarn tsc",
     "semantic-release": "semantic-release"
