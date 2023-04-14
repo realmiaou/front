@@ -5,9 +5,20 @@ import {
   QueryConstraint,
   Unsubscribe
 } from 'firebase/firestore'
-import uniqBy from 'lodash/uniqBy'
 import { deserializeFirestoreDate } from '../serializer'
 import { NuxtVuexModule } from './util'
+
+function uniqBy<T> (arr: T[], fn: (el: T) => any): T[] {
+  const seen = new Set<any>()
+  return arr.filter((el) => {
+    const val = fn(el)
+    if (seen.has(val)) {
+      return false
+    }
+    seen.add(val)
+    return true
+  })
+}
 
 export const NuxtReactiveCollectionVuexModule = <D extends { id: string | number }>(
   namespaced: string,

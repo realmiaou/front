@@ -1,4 +1,5 @@
-import { Functions, httpsCallable } from 'firebase/functions'
+import type { Functions } from 'firebase/functions'
+import { httpsCallable } from 'firebase/functions'
 import { Parameter } from '@miaou/types'
 import dayjs from 'dayjs'
 
