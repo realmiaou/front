@@ -5,8 +5,8 @@ import {
   QueryConstraint,
   Unsubscribe
 } from 'firebase/firestore'
-import { deserializeFirestoreDate } from '../serializer'
-import { NuxtVuexModule } from './util'
+import { deserializeFirestoreDate } from './serializer'
+import { NuxtVuexModule } from './module'
 
 function uniqBy<T> (arr: T[], fn: (el: T) => any): T[] {
   const seen = new Set<any>()

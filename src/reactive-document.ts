@@ -1,6 +1,6 @@
 import { doc, onSnapshot, Unsubscribe } from 'firebase/firestore'
-import { deserializeFirestoreDate } from '../serializer'
-import { NuxtVuexModule } from './util'
+import { deserializeFirestoreDate } from './serializer'
+import { NuxtVuexModule } from './module'
 
 export const NuxtReactiveDocumentVuexModule = <D extends { id: string | number }>(
   namespaced: string,
