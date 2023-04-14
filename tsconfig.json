@@ -3,11 +3,15 @@
     "target": "es2018",
     "module": "esnext",
     "outDir": "./lib",
+    "baseUrl": ".",
     "moduleResolution": "node",
     "declaration": true,
     "strict": true,
     "esModuleInterop": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "paths": {
+      "*": ["*", "lib/*"]
+    }
   },
   "include": [
     "src/**/*"
