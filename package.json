@@ -9,9 +9,6 @@
   "module": "dist/index.mjs",
   "typings": "dist/index.d.ts",
   "private": false,
-  "engines": {
-    "node": "17"
-  },
   "scripts": {
     "build": "yarn rollup -c",
     "semantic-release": "semantic-release"
