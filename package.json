@@ -4,9 +4,9 @@
   "author": "Thibaut Mottet",
   "description": "Front utilities for NuxtJs, Firebase",
   "license": "MIT",
-  "module": "lib/*.js",
-  "main": "lib/*.js",
-  "typings": "lib/*.d.ts",
+  "module": "lib/index.js",
+  "main": "lib/index.js",
+  "typings": "./lib/index.d.ts",
   "preserveModules": true,
   "private": false,
   "exports": {
