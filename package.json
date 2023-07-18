@@ -11,9 +11,9 @@
   "private": false,
   "exports": {
     ".": {
-      "types": "./lib/*.d.ts",
-      "require": "./lib/*.js",
-      "default": "./lib/*.js"
+      "types": "./lib/index.d.ts",
+      "require": "./lib/index.js",
+      "default": "./lib/index.js"
     }
   },
   "scripts": {
