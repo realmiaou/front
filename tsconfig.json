@@ -1,8 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es2018",
-    "module": "commonjs",
-    "outDir": "./lib",
+    "module": "esnext",
     "moduleResolution": "node",
     "declaration": true,
     "strict": true,

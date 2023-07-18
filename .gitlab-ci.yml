@@ -6,7 +6,7 @@ stages:
   - release
 
 publish:
-  image: node:latest
+  image: node:17-alpine
   stage: release
   script:
     - yarn install
