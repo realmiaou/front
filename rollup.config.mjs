@@ -16,6 +16,7 @@ export default [
       {
         file: `${name}.js`,
         format: 'umd',
+        name: 'bundle',
         sourcemap: true
       },
       {

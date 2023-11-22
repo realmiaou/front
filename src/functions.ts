@@ -1,7 +1,6 @@
 import type { Functions } from 'firebase/functions'
 import { httpsCallable } from 'firebase/functions'
 import { Parameter } from '@miaou/types'
-import dayjs from 'dayjs'
 
 export const functions =
     <T extends (data: any | void) => Promise<any>>(
@@ -24,8 +23,8 @@ const deserializeDate = <T>(obj: any): any => {
   return Object.keys(obj).reduce((acc: { [key: string]: any }, key) => {
     const value = obj[key]
     acc[key] =
-            isISODate.test(value) && dayjs(value).isValid()
-              ? dayjs(value).toDate()
+            isISODate.test(value)
+              ? new Date(value)
               : value instanceof Object
                 ? deserializeDate(value)
                 : value
